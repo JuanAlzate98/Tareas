@@ -1,0 +1,65 @@
+
+<div class="form_wrap">
+    <h2>Envía un mensaje</h2>
+    <form action="/contact" class="form_contact" method="POST" enctype="multipart/form-data">
+        <div class="user_info">
+
+
+            <label for="tarea">Nombre de la tarea *</label>
+            
+                <select name="tarea">
+                    {% for task in tasks %}
+
+                        <option value="{{task.title}}">
+                            {{task.title}}
+                        </option>
+                        
+                    {% endfor %}
+
+                        <option value="Ninguna">
+                            Ninguna
+                        </option>
+                </select>
+
+            {# <input type="text" id="name" name="tarea" required> #}
+
+            <label for="name">De parte de * </label>
+            <input autocomplete="off" type="text" id="name" name="nombre" value ="{{app.user.name ~ ' ' ~ app.user.surname}}" required >
+
+            <label for="email">Correo electrónico * </label>
+            <input autocomplete="off" type="email" id="email" name="correo" value="{{app.user.email}}"required>
+
+            <label for="phone">Teléfono/Celular * </label>
+            <input autocomplete="off" type="text" id="phone" name="telefono" required>
+
+            <label for="asunto">Asunto *</label>
+            <input autocomplete="off" type="text" id="asunto" name="asunto" required>
+
+            <label for="mensaje">Mensaje * </label>
+            <textarea id="mensaje" name="mensaje" required></textarea>
+
+            <label for="file">Seleccionar archivo (opcional) </label>
+            <input type="file" value="Enviar Mensaje" name="archivo">
+
+            <input type="submit" value="Enviar Mensaje" id="btnSend">
+        </div>
+    </form>
+</div>
+
+        <button id="show" onclick="ShowHideElement()"> Enviar mensaje
+        </button> 
+
+{% block javascripts %}
+
+   <script type="text/javascript" src=" {{ asset('assets/js/jquery.js')}} ">
+
+   </script>
+
+   <script type="text/javascript" src=" {{ asset('assets/js/app.js')}} "/>
+
+   </script>
+
+{% endblock %}
+
+
+

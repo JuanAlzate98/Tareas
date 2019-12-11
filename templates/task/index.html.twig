@@ -1,0 +1,18 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Listado de tareas {% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1 style="color: #ecf0f1;">Listado de tareas</h1>
+    {% if app.user != null %}
+        {{ include('includes/task-list.html.twig') }}
+        {{ include('includes/form-contact.html.twig') }}
+    {% else %}
+        <h3> <a href="/login" style="color: #f1f1f1;"> Ingresa</a>  para revisar las tareas </h3>
+    {% endif %}
+
+
+{% endblock %}

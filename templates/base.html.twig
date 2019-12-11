@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block title %}
+                Welcome!
+            {% endblock %}
+        </title>
+        <link rel="icon" type="image/jpg" href="D:\Escritorio\logogen.png">
+
+
+        {% block stylesheets %}
+            <link href="{{ asset('assets/css/style.css') }}" type="text/css" rel="stylesheet"/>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        {% endblock %}
+    </head>
+    <body>
+        {% block header %}
+            <div id="header">
+                <h1 style="color: #ecf0f1;">Tareas</h1>
+                    <ul id="menu">
+                        {% if app.user %}
+                            <li><a href=" {{ path('tasks') }} ">Inicio</a></li>
+                            <li><a href=" {{ path('my_tasks') }} ">Mis tareas</a></li>
+                            <li><a href="{{ path('task_creation')}}">Crear tarea</a></li>
+
+
+                            <li class="right"><a href="{{ path('logout') }} ">Cerrar sesión</a></li>
+                            <li class="right"><a href="">{{app.user.email}}</a></li>
+                        {% else %}
+                            <li><a href=" {{ path('login') }} ">Login</a></li>
+                            <li><a href=" {{ path('register') }} " class="isDisabled">Registro</a></li>
+                        {% endif %}
+                    </ul>
+            </div>
+            <div class="clearfix"> </div>
+             
+        {% endblock %}
+
+        {% block body %}
+
+        {% endblock %}
+        
+        {% block footer %}
+            <footer>
+                <div class="container-text-footer">     
+                    <span>
+                        GEN INMOBILIARIA &copy; 2019 - Todos los derechos reservados <h4>V 1.1</h4>
+                    </span>
+                </div>
+            </footer>
+        {% endblock %}
+    </body>
+</html>

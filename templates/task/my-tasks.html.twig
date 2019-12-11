@@ -1,0 +1,13 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %} Mis tareas {% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1 style="color: #ecf0f1;">Mis tareas</h1>
+    {{ include('includes/task-list.html.twig') }}
+    {{ include('includes/form-contact.html.twig') }}
+
+{% endblock %}

@@ -1,0 +1,100 @@
+    {% if tasks|length >=1  %}
+        
+    <table>
+        <tr>
+            <th>
+                Creado por
+            </th>
+
+            {# <th>
+                Para
+            </th> #}
+
+            <th>
+                Tarea
+            </th>
+
+            <th>
+                Para
+            </th>
+
+            <th>
+                Prioridad
+            </th>
+
+            <th>
+                Días presupuestados
+            </th>
+
+            <th>
+                Estado de la tarea
+            </th>
+
+            <th>
+                Acciones de tareas
+            </th>
+        </tr>
+
+        {% for task in tasks %}
+            <tr>
+                <td>{{task.user.name}}</td>
+            
+                <td>{{task.title}}</td>
+                <td>{{task.receptor}}</td>
+                
+                <td>
+                    {% if task.priority == 'high' %}
+                        {{'Alta'}}
+                    {% endif %}
+                    {% if task.priority == 'low' %}
+                        {{'Baja'}}
+                    {% endif %}
+                    {% if task.priority == 'medium' %}
+                        {{'Medio'}}
+                    {% endif %}
+                </td>
+
+
+                <td>{{task.hours}}</td>
+                
+                <td>
+                    {% if task.state == 'unfinished' %}
+                        {{'Sin terminar'}}
+                    {% endif %}
+                    {% if task.state == 'finished' %}
+                        {{'Terminada'}}
+                    {% endif %}
+                </td>
+                
+                <td class="buttons">
+                    <a href="{{ path('task_detail', {'id':task.id}) }}" class="btnsucc"><strong>Ver</strong></a>                   
+                    
+                    {% if app.user != null and task.user.id == app.user.id %}
+
+                    <a href="{{ path('task_edit', {'id':task.id}) }}" class="btninfo"><strong>Editar</strong></a>
+                    <a href="{{ path('task_delete', {'id':task.id}) }}" class="btneli"><strong>Eliminar</strong></a>
+                    
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    {% else %}
+        <strong style="color: #ecf0f1;"> No hay tareas en este momento </strong>
+    {% endif %}
+
+    
+{% block javascripts %}
+
+   {# <script type="text/javascript" src=" {{ asset('assets/js/jquery.js')}} ">
+
+   </script>
+
+   <script type="text/javascript" src=" {{ asset('assets/js/change.js')}} "/>
+
+   </script> #}
+
+{% endblock %}
+
+    

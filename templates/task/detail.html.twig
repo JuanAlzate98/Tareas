@@ -1,0 +1,45 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Listado de tareas {% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h2> {{ task.title }} </h2>
+    <p class="data-task">
+        <h3>
+            {{ task.user.name }} {{ task.user.surname }} - {{ task.user.email }} 
+        </h3>
+        <h3> 
+        Prioridad:  {% if task.priority == 'high' %}
+                    {{'Alta'}}
+                {% endif %}
+                {% if task.priority == 'low' %}
+                    {{'Baja'}}
+                {% endif %}
+                {% if task.priority == 'medium' %}
+                    {{'Medio'}}
+                {% endif %}
+        </h3>
+        <h3>
+            Horas estimadas: {{task.hours}}
+        </h3>
+    </p>
+
+    <p>
+        <h4 style="color:gray;"> Fecha: {{task.user.createdAt|date('d/m/Y h:i:s')}} --- (Por terminar) </h4>
+    </p>
+    
+
+        <div class="content">
+            <h2>Descripción<h2>
+            <p>
+                <h4> 
+                    {{task.content}}
+                </h4>
+            </p>
+        </div>
+
+        {# {{ include('includes/form-contact.html.twig') }} #}
+{% endblock %}
