@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 namespace App\Controller;
 
@@ -69,8 +69,8 @@ class UserController extends AbstractController
 
         $task_repo = $this->getDoctrine()->getRepository(Task::class);
 
-        $tasks= $task_repo->findBy([
-            'user' => '1'
+        $tasks= $task_repo->findAll([
+            'user' => '2'
             ], [
             'id' => 'DESC'
             ]);
@@ -89,11 +89,11 @@ class UserController extends AbstractController
             // $destinatario = "tareasgenin@gmail.com";
 
 
-            $carta = "<h2>Tarea: <a href='http://tareas.gen.com'> $tarea </a> </h2>";
-            $carta .= "<h2>De: $nombre </h2>";
-            $carta .= "<h2>Correo: $correo </h2>";
-            $carta .= "<h2>Celular: $telefono </h2>";
-            $carta .= "<h3>$mensaje</h3>";    
+            $carta = "<h2>Nombre de la tarea:</h2> <p> <a href='http://10.10.30.177'> $tarea </a> ";
+            $carta .= "<h2>De parte de:</h2> <p> $nombre ";
+            $carta .= "<h2>Correo eletrónico:</h2> <p> $correo ";
+            $carta .= "<h2>Celular de contacto:</h2> <p> $telefono";
+            $carta .= "<h3>$mensaje</h3>";
             
 
         $transport = (new \Swift_SmtpTransport)
@@ -112,14 +112,14 @@ class UserController extends AbstractController
         ->setPriority(2)
         ->setSubject($asunto)
         ->setFrom('tareasgenin@gmail.com', 'tareas gen')
-        ->setTo(['atommg25@gmail.com'])
+        ->setTo(['elizabeth.molina@me.com'])
         ->setBody($carta, 'text/html')
         ->setCharset('UTF-8');
         
         if ($file_name != null) {
-           $message ->attach(\Swift_Attachment::fromPath($file_name)); //Ruta del computador
+           $message ->attach(\Swift_Attachment::fromPath($file_name)); 
         }else {
-            $message->attach(\Swift_Attachment::fromPath('D:\Escritorio\logogen.png'));
+            $message->attach(\Swift_Attachment::fromPath('D:\Escritorio\logogen.png')); //Ruta del computador
         }
             
 

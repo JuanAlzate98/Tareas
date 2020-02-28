@@ -8,10 +8,10 @@
 <div class="example-wrapper">
     <h1 style="color: #ecf0f1;">Listado de tareas</h1>
     {% if app.user != null %}
-        {{ include('includes/task-list.html.twig') }}
-        {{ include('includes/form-contact.html.twig') }}
+        {{ include('includes/task-list.html.twig',  ignore_missing = true) }}
+        {{ include('includes/form-cotact.html.twig',  ignore_missing = true) }}
     {% else %}
-        <h3> <a href="/login" style="color: #f1f1f1;"> Ingresa</a>  para revisar las tareas </h3>
+        <<h3> <a href="/login" style="color: #f1f1f1;"> Ingresa</a>  para revisar las tareas </h3>>
     {% endif %}
 
 

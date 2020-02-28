@@ -73,6 +73,7 @@ class User implements UserInterface
      */
 
     private $tasks;
+    
 
     public function __construct()
     {

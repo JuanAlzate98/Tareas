@@ -66,6 +66,14 @@ class Task
     private $state = '';
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(name="adjunto", type="string", length=255, nullable=true, options={"default"="NULL"})
+     */
+    private $adjunto = '';
+
+
+    /**
      * @var \DateTime|null
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=true, options={"default"="NULL"})
@@ -179,6 +187,18 @@ class Task
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getArchivo(): ?string
+    {
+        return $this->adjunto;
+    }
+
+    public function setArchivo(?string $adjunto): self
+    {
+        $this->adjunto = $adjunto;
 
         return $this;
     }

@@ -24,6 +24,20 @@
         {{ form_widget(form) }}
         {{ form_end(form) }}
 
-        {# {{ include('includes/form-contact.html.twig') }} #}
+    {# <button id="btnHola"> Prueba </button>
+        {{ include('includes/form-contact.html.twig') }} #}
+
+    {% block javascripts %}
+
+    <script type="text/javascript" src=" {{ asset('assets/js/libs/jquery.js')}} ">
+    </script>
+
+    <script type="text/javascript" src=" {{ asset('assets/js/libs/push.js')}} ">
+    </script>
+
+    <script type="text/javascript" src=" {{ asset('assets/js/notification.js')}} "/>
+    </script>
 
     {% endblock %}
+
+{% endblock %}

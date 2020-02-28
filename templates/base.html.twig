@@ -7,34 +7,42 @@
                 Welcome!
             {% endblock %}
         </title>
-        <link rel="icon" type="image/jpg" href="D:\Escritorio\logogen.png">
-
+        <link rel="icon" type="image/jpg" href="D:/Escritorio/logogen.png">
 
         {% block stylesheets %}
             <link href="{{ asset('assets/css/style.css') }}" type="text/css" rel="stylesheet"/>
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <script src="https://kit.fontawesome.com/9be1208e75.js" crossorigin="anonymous"></script>
         {% endblock %}
+     
     </head>
     <body>
         {% block header %}
             <div id="header">
-                <h1 style="color: #ecf0f1;">Tareas</h1>
+                <h1 style="color: #ecf0f1;">Tareas <i class="fas fa-check"></i></h1>
+
+                
                     <ul id="menu">
                         {% if app.user %}
-                            <li><a href=" {{ path('tasks') }} ">Inicio</a></li>
-                            <li><a href=" {{ path('my_tasks') }} ">Mis tareas</a></li>
-                            <li><a href="{{ path('task_creation')}}">Crear tarea</a></li>
+                            {# <input type="search" placeholder="Buscar tarea">
+                            <a class="search-btn">
+                                <i class="fas fa-search"></i>
+                            </a> #}
+                                
+                            <li><a href=" {{ path('tasks') }} ">Inicio <i class="fas fa-align-justify"></i> </a></li>
+                            <li><a href=" {{ path('my_tasks') }} ">Mis tareas <i class="fas fa-tasks"></i> </a></li>
+                            <li><a href="{{ path('task_creation')}}">Crear tarea <i class="fas fa-plus-circle"></i></a></li>
 
-
-                            <li class="right"><a href="{{ path('logout') }} ">Cerrar sesión</a></li>
-                            <li class="right"><a href="">{{app.user.email}}</a></li>
+                            <li class="right"><a href="{{ path('logout') }} ">Cerrar sesión <i class="fas fa-times-circle"></i> </a></li>
+                            <li class="right"><a href="">{{app.user.email}} <i class="far fa-user"></i></a></li>
+                            {# <li class="right"><a href="http://10.10.30.177:3000"  target="_blank">Ingresa al chat <i class="fas fa-comments"></i> </a></li> #}
                         {% else %}
-                            <li><a href=" {{ path('login') }} ">Login</a></li>
-                            <li><a href=" {{ path('register') }} " class="isDisabled">Registro</a></li>
+                            <li><a href=" {{ path('login') }} ">Ingresar <i class="fas fa-user"></i></a></li>
+                                <li><a href=" {{ path('register') }} " class="isDisabled">Registrarse <i class="fas fa-user-plus"></i></a></li>
                         {% endif %}
                     </ul>
             </div>
             <div class="clearfix"> </div>
+
              
         {% endblock %}
 
@@ -46,10 +54,21 @@
             <footer>
                 <div class="container-text-footer">     
                     <span>
-                        GEN INMOBILIARIA &copy; 2019 - Todos los derechos reservados <h4>V 1.1</h4>
+                        GEN INMOBILIARIA &copy; 2.020 - Todos los derechos reservados 
+                        <h4>
+                            V 1.2 ( ✅ Fecha y hora de la tarea termianda ) 
+                        </h4>
                     </span>
+                    
                 </div>
             </footer>
+
         {% endblock %}
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        
     </body>
 </html>

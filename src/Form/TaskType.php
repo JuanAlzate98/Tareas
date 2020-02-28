@@ -6,7 +6,11 @@
     use Symfony\Component\Form\Extension\Core\Type\TextType;
     use Symfony\Component\Form\Extension\Core\Type\SubmitType;
     use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+    use Symfony\Component\Form\Extension\Core\Type\FileType;
     use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+    use Symfony\Component\Validator\Constraints\File;
+
+
     
     class TaskType extends AbstractType
     {
@@ -36,17 +40,41 @@
                 )
             ))
             ->add('hours', TextType::class, array(
-                'label' => 'Días presupuestados'
+                'label' => 'Días estimados'
             ))
             ->add('state', ChoiceType::class, array(
-                'label' => 'Estado',
+                'label' => 'Estado de la tarea',
                 'choices' => array(
                     'Sin terminar' => 'unfinished',
                     'Terminada' => 'finished',
                 )
             ))
+            ->add('adjunto', FileType::class, [
+                'label' => 'Archivo (PDF file)',
+                'mapped' => false,
+
+                // make it optional so you don't have to re-upload the PDF file
+                // every time you edit the Product details
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'application/pdf',
+                            'application/x-pdf',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                    ])
+
+                ],
+            ])
+               
+
             ->add('submit', SubmitType::class, array(
-                'label' => 'Guardar'
+                'label' => 'Guardar',
+                'attr' => [
+                    'id' => 'btnSave' 
+                ]
             ));
         }
     }

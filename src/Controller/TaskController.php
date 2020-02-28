@@ -20,10 +20,11 @@ class TaskController extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         $task_repo = $this->getDoctrine()->getRepository(Task::class);
-        $tasks= $task_repo->findBy([
-            'user' => '1'
-            ], [
-            'id' => 'DESC'
+        $tasks= $task_repo->findAll([
+                'user' => "2,3",
+		
+            ],[
+                'id' => 'DESC'
             ]);
 
 
@@ -71,6 +72,15 @@ class TaskController extends AbstractController
             $task->setCreatedAt(new \Datetime('now'));
             $task->setUser($user);
 
+            $task = $form->get('adjunto')->getData();
+            if ($task) {
+                $task =
+                 pathinfo
+                ($task->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $task);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$task->guessExtension();
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($task);
             $em->flush();
@@ -82,10 +92,8 @@ class TaskController extends AbstractController
             );
         }
 
-        return $this->render('task/creation.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
+        return null;
+        }}
 
     // ============================================================================================
     

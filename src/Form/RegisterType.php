@@ -5,7 +5,8 @@
     use Symfony\Component\Form\FormBuilderInterface;
     use Symfony\Component\Form\Extension\Core\Type\TextType;
     use Symfony\Component\Form\Extension\Core\Type\EmailType;
-    use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
     use Symfony\Component\Form\Extension\Core\Type\SubmitType;
     
     class RegisterType extends AbstractType
@@ -35,7 +36,9 @@
             ))
             ->add('submit', SubmitType::class, array(
                 'label' => 'Registrarse'
-            ));
+            )) ;
+
+
         }
     }
     

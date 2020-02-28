@@ -6,34 +6,37 @@
 {% block body %}
 
 <div class="example-wrapper">
-    <h2> {{ task.title }} </h2>
+    <h2> <i class="fas fa-check-circle"></i> {{ task.title }} </h2>
     <p class="data-task">
         <h3>
-            {{ task.user.name }} {{ task.user.surname }} - {{ task.user.email }} 
+            <i class="fas fa-user"></i> {{ task.user.name }} {{ task.user.surname }} - <i class="fas fa-envelope"></i> {{ task.user.email }} 
         </h3>
-        <h3> 
-        Prioridad:  {% if task.priority == 'high' %}
-                    {{'Alta'}}
+        <h3>             
+        Prioridad:
+                {% if task.priority == 'high' %}
+                   {{'Alta'}}  <i class="fas fa-exclamation-circle" style="color: #eb2f06;"></i>
                 {% endif %}
-                {% if task.priority == 'low' %}
-                    {{'Baja'}}
-                {% endif %}
+
                 {% if task.priority == 'medium' %}
-                    {{'Medio'}}
+                    {{'Medio'}} <i class="fas fa-exclamation-triangle" style="color: #f6b93b;"></i>
+                {% endif %}
+                
+                {% if task.priority == 'low' %}
+                    {{'Baja'}} <i class="fas fa-exclamation" style="color: #8395a7;"></i>
                 {% endif %}
         </h3>
         <h3>
-            Horas estimadas: {{task.hours}}
+          <i class="fas fa-clock"></i>  Días estimados: {{task.hours}}
         </h3>
     </p>
 
     <p>
-        <h4 style="color:gray;"> Fecha: {{task.user.createdAt|date('d/m/Y h:i:s')}} --- (Por terminar) </h4>
+        <h4> <i class="fas fa-calendar-alt"></i> Fecha: {{task.createdAt|date('d/m/Y h:i:s')}} ( Actualizar ) </h4>
     </p>
     
 
         <div class="content">
-            <h2>Descripción<h2>
+            <h2><i class="fas fa-sticky-note"></i> Descripción <h2>
             <p>
                 <h4> 
                     {{task.content}}

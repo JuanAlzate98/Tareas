@@ -1,4 +1,4 @@
-// console.log("funcionando");
+console.log(" app.js funcionando");
 
 $('.form_wrap').hide();
 
